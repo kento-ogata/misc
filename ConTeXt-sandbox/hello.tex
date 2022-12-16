@@ -1,3 +1,12 @@
+\setuplayout[backspace=2cm, % 左端から本文までのスペース
+  topspace=1cm,             % 上端からヘッダまでのスペース
+  header=1cm,               % ヘッダの高さ
+  footer=1cm,               % フッタの高さ
+  width=middle,             % 本文が中心になるように残りの余白を設定
+  height=middle]
+\showframe                  % 設定したレイアウトを枠で表示
+
+\setuppagenumbering[location={footer,middle}]
 \starttext
 \startsection[title={Testing \ConTeXt}]
   This is my {\em first} \ConTeXt{} document.
