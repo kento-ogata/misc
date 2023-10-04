@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Fluxor.Blazor.Web" Version="5.9.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>

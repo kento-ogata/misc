@@ -1,17 +1,21 @@
 using System.Reflection;
 using Server.Data;
-
+using Server.Store.Middlewares.Logging;
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 void ConfigureService(IServiceCollection services)
 {
     services.AddRazorPages();
     services.AddServerSideBlazor();
     services.AddSingleton<WeatherForecastService>();
-    services.AddFluxor(opts => opts.ScanAssemblies(Assembly.GetExecutingAssembly()));
+    services.AddFluxor(opts =>
+        opts
+            .ScanAssemblies(Assembly.GetExecutingAssembly())
+            .AddMiddleware<LoggingMiddleware>()
+    );
 };
 
-// Add services to the container.
 ConfigureService(builder.Services);
 
 var app = builder.Build();
