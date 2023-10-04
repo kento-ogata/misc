@@ -13,6 +13,20 @@ void ConfigureService(IServiceCollection services)
         opts
             .ScanAssemblies(Assembly.GetExecutingAssembly())
             .AddMiddleware<LoggingMiddleware>()
+        #if DEBUG
+            .UseReduxDevTools(rdt =>
+            {
+                rdt.UseNewtonsoftJson(_ =>
+                    new()
+                    {
+                        ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver
+                        {
+                            NamingStrategy = new Newtonsoft.Json.Serialization.CamelCaseNamingStrategy(),
+                        }
+                    }
+                );
+            })
+        #endif
     );
 };
 
